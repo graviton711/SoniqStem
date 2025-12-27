@@ -1,4 +1,4 @@
-# 🎵 SoniqStem AI
+# SoniqStem AI
 **Advanced Neural Audio Processing & Vocal Transformation**
 
 ![SoniqStem Dashboard](assets/dashboard.png)
@@ -7,20 +7,20 @@
 
 ---
 
-## 🌟 Why SoniqStem?
+## Why SoniqStem?
 
 SoniqStem AI is not just another audio tool. It's a localized powerhouse for music producers, DJs, and content creators. We leverage state-of-the-art AI models to deconstruct audio and reconstruct distinct sonic elements.
 
-### 🔥 Features
+### Features
 
-#### 1. 🧬 Ultimate Stem Separator
+#### 1. Ultimate Stem Separator
 *Powered by Meta's Demucs v4 Hybrid Transformer*
 Stop struggling with EQ. Extract studio-quality stems from any mixed track in seconds.
 - **Micro-Surgical Precision:** Cleanly isolates **Vocals** from the **Instrumental**.
 - **Dual Engine:** Supports local file uploads (WAV/MP3/FLAC) and direct YouTube URL processing.
 - **High Fidelity:** Outputs pure 24-bit WAV for maximum localized quality.
 
-#### 2. 🧪 Voice Lab Lite
+#### 2. Voice Lab Lite
 *DSP-Based Vocal Shapeshifter*
 Transform the timbre and gender of any vocal track instantly without quality loss.
 - **Gender Swapping:** Morph Male vocals to Female (and vice-versa) with formant-preserving pitch shifting.
@@ -29,41 +29,28 @@ Transform the timbre and gender of any vocal track instantly without quality los
 
 ---
 
-## 🛠️ Architecture & Tech Stack
+## Architecture
 
 How does the magic happen? Here is the flow of data through our neural engine:
 
 ```mermaid
 graph TD
-    User([👤 User]) -->|Uploads Audio/URL| Frontend
+    User[User] -->|Uploads Audio or URL| Frontend[React UI]
+    Frontend -->|API Request| Backend[FastAPI Server]
     
-    subgraph "🚀 Frontend (React + Vite)"
-        Frontend[UI Dashboard]
-        Waveform[Waveform Visualizer]
-    end
+    Backend --> Router{Request Type}
+    Router -->|Split Stems| Separator[Demucs AI]
+    Router -->|Voice Clone| VoiceLab[Librosa DSP]
     
-    Frontend -->|API Request| Backend
+    Separator --> Storage[Local Storage]
+    VoiceLab --> Storage
     
-    subgraph "🧠 Backend (FastAPI + Python)"
-        Backend[API Server]
-        Router{Request Type}
-        Backend --> Router
-        
-        Router -->|Split Stems| Separator[Demucs AI Engine]
-        Router -->|Voice Clone| VoiceLab[Librosa DSP Engine]
-        
-        separator_model[(Demucs v4 Model)] -.-> Separator
-    end
-    
-    Separator -->|Vocals + Instr| Storage[Local Storage]
-    VoiceLab -->|Modified Audio| Storage
-    
-    Storage -->|Static File Serving| Frontend
+    Storage -->|Serve Static Files| Frontend
 ```
 
 ### Core Technologies
-- **Frontend:** React 18, TailwindCSS (Glassmorphism UI), Lucide Icons.
-- **Backend:** FastAPI (High-performance Async), Uvicorn.
+- **Frontend:** React 18, TailwindCSS.
+- **Backend:** FastAPI, Uvicorn.
 - **AI/DSP:**
     - **Demucs:** State-of-the-art music source separation.
     - **Librosa:** Professional audio analysis and manipulation.
@@ -71,7 +58,7 @@ graph TD
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.10+
@@ -106,5 +93,5 @@ graph TD
 
 ---
 
-## 📜 License
+## License
 MIT License © 2025 SoniqStem AI
