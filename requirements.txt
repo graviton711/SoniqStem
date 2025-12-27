@@ -1,0 +1,15 @@
+demucs
+torch
+torchaudio
+librosa
+numpy
+soundfile
+transformers
+scipy
+accelerate
+matchering
+fairseq
+faiss-cpu
+torchcrepe
+tensorboardX
+praat-parselmouth
