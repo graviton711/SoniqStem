@@ -1,55 +1,110 @@
-# SoniqStem AI
+# 🎵 SoniqStem AI
+**Advanced Neural Audio Processing & Vocal Transformation**
 
-Advanced Neural Audio Extraction and Voice Processing.
+![SoniqStem Dashboard](assets/dashboard.png)
 
-## Features
+> *Unlock the hidden layers of your music. Separate stems with surgical precision and transform voices with the power of DSP.*
 
-### 1. Stem Separator
-Split any song into two high-quality tracks:
-- Vocals
-- Instrumental (No Vocals)
-Supports both local file uploads and YouTube URLs.
+---
 
-### 2. Voice Lab Lite
-Transform vocals using Digital Signal Processing (DSP).
-- Pitch Shift: Change gender or tone of a voice (Male to Female, Female to Male).
-- Real-time conversion using Librosa.
+## 🌟 Why SoniqStem?
 
-## Installation
+SoniqStem AI is not just another audio tool. It's a localized powerhouse for music producers, DJs, and content creators. We leverage state-of-the-art AI models to deconstruct audio and reconstruct distinct sonic elements.
 
-1. Prerequisites:
-   - Python 3.10 or higher
-   - Node.js (for Frontend)
-   - FFmpeg (installed and added to PATH)
+### 🔥 Features
 
-2. Setup Backend:
-   cd E:\VSCODE_WORKSPACE\Music
+#### 1. 🧬 Ultimate Stem Separator
+*Powered by Meta's Demucs v4 Hybrid Transformer*
+Stop struggling with EQ. Extract studio-quality stems from any mixed track in seconds.
+- **Micro-Surgical Precision:** Cleanly isolates **Vocals** from the **Instrumental**.
+- **Dual Engine:** Supports local file uploads (WAV/MP3/FLAC) and direct YouTube URL processing.
+- **High Fidelity:** Outputs pure 24-bit WAV for maximum localized quality.
+
+#### 2. 🧪 Voice Lab Lite
+*DSP-Based Vocal Shapeshifter*
+Transform the timbre and gender of any vocal track instantly without quality loss.
+- **Gender Swapping:** Morph Male vocals to Female (and vice-versa) with formant-preserving pitch shifting.
+- **Zero Latency DSP:** Uses `Librosa` for artifact-free signal processing.
+- **Safe & Fast:** Runs 100% locally on your machine. No cloud uploads, no privacy risks.
+
+---
+
+## 🛠️ Architecture & Tech Stack
+
+How does the magic happen? Here is the flow of data through our neural engine:
+
+```mermaid
+graph TD
+    User([👤 User]) -->|Uploads Audio/URL| Frontend
+    
+    subgraph "🚀 Frontend (React + Vite)"
+        Frontend[UI Dashboard]
+        Waveform[Waveform Visualizer]
+    end
+    
+    Frontend -->|API Request| Backend
+    
+    subgraph "🧠 Backend (FastAPI + Python)"
+        Backend[API Server]
+        Router{Request Type}
+        Backend --> Router
+        
+        Router -->|Split Stems| Separator[Demucs AI Engine]
+        Router -->|Voice Clone| VoiceLab[Librosa DSP Engine]
+        
+        separator_model[(Demucs v4 Model)] -.-> Separator
+    end
+    
+    Separator -->|Vocals + Instr| Storage[Local Storage]
+    VoiceLab -->|Modified Audio| Storage
+    
+    Storage -->|Static File Serving| Frontend
+```
+
+### Core Technologies
+- **Frontend:** React 18, TailwindCSS (Glassmorphism UI), Lucide Icons.
+- **Backend:** FastAPI (High-performance Async), Uvicorn.
+- **AI/DSP:**
+    - **Demucs:** State-of-the-art music source separation.
+    - **Librosa:** Professional audio analysis and manipulation.
+    - **PyTorch:** Deep learning framework.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Python 3.10+
+- Node.js & npm
+- FFmpeg (Must be in system PATH)
+
+### Installation
+
+1. **Clone the Repo**
+   ```bash
+   git clone https://github.com/graviton711/SoniqStem.git
+   cd SoniqStem
+   ```
+
+2. **Backend Setup**
+   ```bash
    pip install -r requirements.txt
+   # Start the API Server (Port 8001)
+   python api.py
+   ```
 
-3. Setup Frontend:
+3. **Frontend Setup**
+   ```bash
    cd soniqstem-ai
    npm install
-
-## Usage
-
-1. Start the API Server:
-   python api.py
-   (Server runs on http://localhost:8001)
-
-2. Start the Frontend:
-   cd soniqstem-ai
+   # Start the UI (Port 5173)
    npm run dev
-   (App runs on http://localhost:5173)
+   ```
 
-3. Open your browser and navigate to http://localhost:5173
+4. **Launch**
+   Open `http://localhost:5173` and start creating!
 
-## Tech Stack
+---
 
-- Backend: FastAPI, Demucs (Source Separation), Librosa (DSP), Torch
-- Frontend: React, TailwindCSS, Lucide React
-- Infrastructure: FFmpeg
-
-## Troubleshooting
-
-- If audio processing fails, ensure FFmpeg is correctly installed.
-- Ensure backend server is running before uploading files.
+## 📜 License
+MIT License © 2025 SoniqStem AI
